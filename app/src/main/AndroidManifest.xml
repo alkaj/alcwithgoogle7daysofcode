@@ -21,8 +21,16 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".DiaryFactoryActivity" />
-        <activity android:name=".DiaryActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".DiraryActivity"
+            android:label="@string/title_activity_dirary"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.walkity.apps.journalapp.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
