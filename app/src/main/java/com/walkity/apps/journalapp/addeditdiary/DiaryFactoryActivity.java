@@ -1,4 +1,4 @@
-package com.walkity.apps.journalapp;
+package com.walkity.apps.journalapp.addeditdiary;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.walkity.apps.journalapp.R;
 import com.walkity.apps.journalapp.databinding.ActivityDiaryFactoryBinding;
 
 import java.util.Date;

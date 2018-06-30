@@ -1,7 +1,9 @@
-package com.walkity.apps.journalapp;
+package com.walkity.apps.journalapp.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.walkity.apps.journalapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 

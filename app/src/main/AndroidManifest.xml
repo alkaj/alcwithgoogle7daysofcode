@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".diaries.DiariesActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,29 +20,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".login.LoginActivity"
+            android:parentActivityName=".diaries.DiariesActivity"
             android:label="@string/login_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.walkity.apps.journalapp.MainActivity" />
+                android:value="com.walkity.apps.journalapp.diaries.DiariesActivity" />
         </activity>
-        <activity android:name=".DiaryFactoryActivity" android:label="@string/factory_title"/>
-        <activity android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"
+        <activity android:name=".addeditdiary.DiaryFactoryActivity" android:label="@string/factory_title"/>
+        <activity android:name=".settings.SettingsActivity"
+            android:parentActivityName=".diaries.DiariesActivity"
             android:label="@string/settings_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.walkity.apps.journalapp.MainActivity" />
+                android:value="com.walkity.apps.journalapp.diaries.DiariesActivity" />
         </activity>
         <activity
-            android:name=".DiraryActivity"
+            android:name=".diarydetails.DiraryActivity"
             android:label="@string/title_activity_dirary"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".diaries.DiariesActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.walkity.apps.journalapp.MainActivity" />
+                android:value="com.walkity.apps.journalapp.diaries.DiariesActivity" />
         </activity>
     </application>
 

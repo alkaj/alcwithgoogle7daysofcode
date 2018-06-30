@@ -9,9 +9,9 @@ import static org.junit.Assert.*;
 
 /**
  * Created by alkaj on 6/27/18.
- * Main activity instrumentation tests class
+ * Diaries activity instrumentation tests class
  */
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class DiariesActivityTest {
 
 }

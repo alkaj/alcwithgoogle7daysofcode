@@ -1,4 +1,4 @@
-package com.walkity.apps.journalapp;
+package com.walkity.apps.journalapp.diaries;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
+import com.walkity.apps.journalapp.addeditdiary.DiaryFactoryActivity;
+import com.walkity.apps.journalapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class DiariesActivity extends AppCompatActivity {
     //firebase variables;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            startActivity(new Intent(MainActivity.this, DiaryFactoryActivity.class));
+            startActivity(new Intent(DiariesActivity.this, DiaryFactoryActivity.class));
             }
         });
     }

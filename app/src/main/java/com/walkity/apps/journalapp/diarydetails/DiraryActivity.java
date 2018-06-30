@@ -1,4 +1,4 @@
-package com.walkity.apps.journalapp;
+package com.walkity.apps.journalapp.diarydetails;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.walkity.apps.journalapp.R;
 
 public class DiraryActivity extends AppCompatActivity {
 
