@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "449792315782",
+    "firebase_url": "https://illusion-84d2c.firebaseio.com",
+    "project_id": "illusion-84d2c",
+    "storage_bucket": "illusion-84d2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449792315782:android:e893fde2476146b1",
+        "android_client_info": {
+          "package_name": "com.walkity.apps.journalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449792315782-3ruv03hatvstq0rrlent8b51sedulubm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.walkity.apps.journalapp",
+            "certificate_hash": "033daa7deddd3364ff0362983a12a9bf1d1c5da4"
+          }
+        },
+        {
+          "client_id": "449792315782-ckrmllbnqk92g20iqjkhb0i25q3g2egh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHMicvZd0hRsHslP5uMLjU7ugp10EKRSs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449792315782-ckrmllbnqk92g20iqjkhb0i25q3g2egh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

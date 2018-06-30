@@ -19,9 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".DiaryFactoryActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/login_title">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.walkity.apps.journalapp.MainActivity" />
+        </activity>
+        <activity android:name=".DiaryFactoryActivity" android:label="@string/factory_title"/>
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/settings_title">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.walkity.apps.journalapp.MainActivity" />
+        </activity>
         <activity
             android:name=".DiraryActivity"
             android:label="@string/title_activity_dirary"
