@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.walkity.apps.journalapp.R;
 
-public class DiraryActivity extends AppCompatActivity {
+public class DiaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

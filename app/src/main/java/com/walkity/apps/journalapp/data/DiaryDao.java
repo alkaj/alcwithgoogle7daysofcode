@@ -1,5 +1,6 @@
 package com.walkity.apps.journalapp.data;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -7,6 +8,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +20,15 @@ import java.util.List;
 public interface DiaryDao {
 
     @Query("select * from diaries order by date")
-    List<DiaryEntry> getEntries();
+    LiveData<List<DiaryEntry>> getEntries();
+
+    //a reactive entry
+    @Query("select * from diaries where id = :id")
+    LiveData<DiaryEntry> getEntry(int id);
+
+    //and a non reactive one...
+    @Query("select * from diaries where id = :id")
+    DiaryEntry getNonReactiveEntry(int id);
 
     @Insert
     void addEntry(DiaryEntry entry);

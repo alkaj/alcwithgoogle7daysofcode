@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:launchMode="singleTop"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -13,19 +14,19 @@
             android:name=".diaries.DiariesActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.walkity.apps.journalapp.login.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".diaries.DiariesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".login.LoginActivity"
-            android:parentActivityName=".diaries.DiariesActivity"
-            android:label="@string/login_title">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.walkity.apps.journalapp.diaries.DiariesActivity" />
         </activity>
         <activity android:name=".addeditdiary.DiaryFactoryActivity" android:label="@string/factory_title"/>
         <activity android:name=".settings.SettingsActivity"
@@ -36,7 +37,7 @@
                 android:value="com.walkity.apps.journalapp.diaries.DiariesActivity" />
         </activity>
         <activity
-            android:name=".diarydetails.DiraryActivity"
+            android:name=".diarydetails.DiaryActivity"
             android:label="@string/title_activity_dirary"
             android:parentActivityName=".diaries.DiariesActivity"
             android:theme="@style/AppTheme.NoActionBar">

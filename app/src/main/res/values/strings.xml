@@ -2,7 +2,7 @@
     <string name="app_name">Journal App</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_dirary">Dirary</string>
-    <string name="factory_title">Factory</string>
+    <string name="factory_title">New entry</string>
     <string name="login_title">Login</string>
     <string name="settings_title">Settings</string>
     <string name="diary_title_hint">Your diary title</string>
@@ -16,4 +16,13 @@
     <string name="date_format">MMM dd, yyyy</string>
     <string name="time_format">hh:mm a</string>
     <string name="time_text">13:33</string>
+    <string name="logout_text">Logout</string>
+    <string name="login_text">Sign in to start saving your memories</string>
+    <string name="journal_text">\'s journal</string>
+    <string name="arrow_text">Click down there to start</string>
+    <string name="diaries_empty_text">Hmmm too much blank space here!!! \n\n  What\'s that plus sign for??</string>
+    <string name="entry_saved_text">Entry saved successfully</string>
+    <string name="draft_saved_text">Draft saved</string>
+    <string name="error_no_title_text">A diary should have a title to be saved</string>
+    <string name="error_no_narration_text">A diary should have a narration to be saved</string>
 </resources>
