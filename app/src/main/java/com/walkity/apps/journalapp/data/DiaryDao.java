@@ -19,7 +19,7 @@ import java.util.List;
 @Dao
 public interface DiaryDao {
 
-    @Query("select * from diaries order by date")
+    @Query("select * from diaries order by date desc")
     LiveData<List<DiaryEntry>> getEntries();
 
     //a reactive entry

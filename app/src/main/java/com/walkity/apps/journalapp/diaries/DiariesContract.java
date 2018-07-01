@@ -22,10 +22,11 @@ public interface DiariesContract {
         void showSpinner();
         void showDiaries(LiveData<List<DiaryEntry>> entries);
         void showEmptyList();
-        void showNewEntry();
+        void showNewEntry(int id);
         void showEntryDetails(int id);
         void showUserDetails(FirebaseUser user);
         void showLogin();
+        void showDeleteConfirmation();
     }
 
     interface Presenter extends BasePresenter
@@ -34,8 +35,9 @@ public interface DiariesContract {
         void initView(@NonNull View view);
         void loadDiary(@NonNull DiaryEntry entry);
         void loadUserData();
-        void loadUi();
         void logout();
         void newEntry();
+        void deleteEntry(@NonNull DiaryEntry entry);
+        void updateEntry(@NonNull DiaryEntry entry);
     }
 }

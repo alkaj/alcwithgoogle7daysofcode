@@ -3,6 +3,7 @@ package com.walkity.apps.journalapp.addeditdiary;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.walkity.apps.journalapp.data.AppDatabase;
 import com.walkity.apps.journalapp.data.DiaryEntry;
@@ -37,12 +38,20 @@ public class AddEditPresenter extends AndroidViewModel implements AddEditContrac
     }
 
     @Override
-    public void loadEntry(int id) {
+    public void loadEntry(final int id) {
         //create a new draft if no valid entry provided
-        if(id == 0)
+        if(id == 0) {
             mDraft = new DiaryEntry("", "", new Date(), "");
-        else mDraft = database.dao().getNonReactiveEntry(id);
-        mView.showUI(mDraft);
+            mView.showUI(mDraft);
+        }
+        else
+            new AppExecutor().execute(new Runnable() {
+                @Override
+                public void run() {
+                    mDraft = database.dao().getNonReactiveEntry(id);
+                    //mView.showUI(mDraft);
+                }
+            });
     }
 
     @Override

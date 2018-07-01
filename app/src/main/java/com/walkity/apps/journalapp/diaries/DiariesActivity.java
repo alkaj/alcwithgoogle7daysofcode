@@ -3,11 +3,13 @@ package com.walkity.apps.journalapp.diaries;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.walkity.apps.journalapp.R;
@@ -27,7 +30,9 @@ import com.walkity.apps.journalapp.utils.DiariesListAdapter;
 
 import java.util.List;
 
-public class DiariesActivity extends AppCompatActivity implements DiariesContract.View{
+public class DiariesActivity extends AppCompatActivity
+        implements DiariesContract.View, DiariesListAdapter.ListClickListener
+{
 
     private DiariesContract.Presenter mPresenter;
     private ActivityMainBinding mainBinding;
@@ -108,6 +113,23 @@ public class DiariesActivity extends AppCompatActivity implements DiariesContrac
 
     @Override
     public void showDiaries(LiveData<List<DiaryEntry>> diaries) {
+        //keep the list of diaries synced...
+        diaries.observe(this, new Observer<List<DiaryEntry>>(){
+            @Override
+            public void onChanged(@Nullable List<DiaryEntry> diaryEntries) {
+                if(diaryEntries.size() == 0)
+                    showEmptyList();
+                else {
+                    contentBinding.diariesList.setHasFixedSize(true);
+                    //set layout manager
+                    contentBinding.diariesList.setLayoutManager(new LinearLayoutManager(DiariesActivity.this));
+                    //set the data to the adapter...
+                    DiariesListAdapter dla = new DiariesListAdapter(diaryEntries,
+                            DiariesActivity.this);
+                    contentBinding.diariesList.setAdapter(dla);
+                }
+            }
+        });
         //show the list...
         Log.w("diaries", "Showing the list");
         contentBinding.diariesList.setVisibility(View.VISIBLE);
@@ -115,19 +137,6 @@ public class DiariesActivity extends AppCompatActivity implements DiariesContrac
         contentBinding.diariesArrow.setVisibility(View.GONE);
         contentBinding.textView2.setVisibility(View.GONE);
 
-        //keep the list of diaries synced...
-        diaries.observe(this, new Observer<List<DiaryEntry>>(){
-            @Override
-            public void onChanged(@Nullable List<DiaryEntry> diaryEntries) {
-                contentBinding.diariesList.setHasFixedSize(true);
-                //set layout manager
-                contentBinding.diariesList.setLayoutManager(new LinearLayoutManager(DiariesActivity.this));
-                //set the data to the adapter...
-                DiariesListAdapter dla = new DiariesListAdapter(diaryEntries,
-                        DiariesActivity.this);
-                contentBinding.diariesList.setAdapter(dla);
-            }
-        });
     }
 
     @Override
@@ -140,9 +149,10 @@ public class DiariesActivity extends AppCompatActivity implements DiariesContrac
     }
 
     @Override
-    public void showNewEntry() {
+    public void showNewEntry(int id) {
         //launch new entry activity...
         Intent newEntry = new Intent(DiariesActivity.this, DiaryFactoryActivity.class);
+        newEntry.putExtra("id", id);
         startActivity(newEntry);
     }
 
@@ -167,5 +177,33 @@ public class DiariesActivity extends AppCompatActivity implements DiariesContrac
     public void showLogin() {
         //show the login activity...
         onBackPressed();
+    }
+
+    @Override
+    public void showDeleteConfirmation() {
+        AlertDialog.Builder adb = new AlertDialog.Builder(this)
+                .setMessage("Do you really want to give up on this piece of your memories?")
+                .setNegativeButton("No", null)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do something not funny at all... delete!
+                    }
+                });
+        adb.show();
+    }
+
+    @Override
+    public void onClick(DiaryEntry entry, View v) {
+        switch(v.getId()){
+            case R.id.icon_delete:
+                mPresenter.deleteEntry(entry);
+                break;
+            case R.id.icon_edit:
+                mPresenter.updateEntry(entry);
+                break;
+            default:
+                mPresenter.loadDiary(entry);
+        }
     }
 }

@@ -42,6 +42,7 @@ public class DiariesPresenter extends AndroidViewModel implements DiariesContrac
 
     @Override
     public void subscribe() {
+        mView.showSpinner();
         loadDiaries();
     }
 
@@ -63,6 +64,7 @@ public class DiariesPresenter extends AndroidViewModel implements DiariesContrac
 
     @Override
     public void loadDiary(@NonNull DiaryEntry entry) {
+        mView.showEntryDetails(entry.getId());
     }
 
     @Override
@@ -70,10 +72,6 @@ public class DiariesPresenter extends AndroidViewModel implements DiariesContrac
         mView.showUserDetails(mAuth.getCurrentUser());
     }
 
-    @Override
-    public void loadUi() {
-
-    }
 
     @Override
     public void logout() {
@@ -83,6 +81,16 @@ public class DiariesPresenter extends AndroidViewModel implements DiariesContrac
 
     @Override
     public void newEntry() {
-        mView.showNewEntry();
+        mView.showNewEntry(0);
+    }
+
+    @Override
+    public void deleteEntry(@NonNull DiaryEntry entry) {
+        mView.showDeleteConfirmation();
+    }
+
+    @Override
+    public void updateEntry(@NonNull DiaryEntry entry) {
+        mView.showNewEntry(entry.getId());
     }
 }

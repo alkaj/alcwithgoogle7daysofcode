@@ -4,7 +4,10 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import com.walkity.apps.journalapp.R;
+
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by alkaj on 6/30/18.
@@ -82,6 +85,18 @@ public class DiaryEntry {
     public String getImages()
     {
         return this.images;
+    }
+
+    public String dateFormatted()
+    {
+        java.text.SimpleDateFormat sdfdate = new java.text.SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+        return sdfdate.format(this.date);
+    }
+
+    public String timeFormatted()
+    {
+        java.text.SimpleDateFormat sdftime = new java.text.SimpleDateFormat("hh:mm a", Locale.getDefault());
+        return sdftime.format(date);
     }
 
     public Date getDate()
