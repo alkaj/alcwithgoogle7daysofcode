@@ -49,7 +49,7 @@ public class AddEditPresenter extends AndroidViewModel implements AddEditContrac
                 @Override
                 public void run() {
                     mDraft = database.dao().getNonReactiveEntry(id);
-                    //mView.showUI(mDraft);
+                    mView.showUI(mDraft);
                 }
             });
     }
