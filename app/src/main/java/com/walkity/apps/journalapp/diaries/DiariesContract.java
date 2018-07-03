@@ -26,7 +26,7 @@ public interface DiariesContract {
         void showEntryDetails(int id);
         void showUserDetails(FirebaseUser user);
         void showLogin();
-        void showDeleteConfirmation();
+        void showDeleteConfirmation(@NonNull DiaryEntry entry);
     }
 
     interface Presenter extends BasePresenter
@@ -39,5 +39,6 @@ public interface DiariesContract {
         void newEntry();
         void deleteEntry(@NonNull DiaryEntry entry);
         void updateEntry(@NonNull DiaryEntry entry);
+        void confirmDelete(@NonNull DiaryEntry entry);
     }
 }

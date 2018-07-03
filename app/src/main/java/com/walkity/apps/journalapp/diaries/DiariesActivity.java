@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -131,7 +132,6 @@ public class DiariesActivity extends AppCompatActivity
             }
         });
         //show the list...
-        Log.w("diaries", "Showing the list");
         contentBinding.diariesList.setVisibility(View.VISIBLE);
         contentBinding.diariesProgress.setVisibility(View.GONE);
         contentBinding.diariesArrow.setVisibility(View.GONE);
@@ -180,14 +180,15 @@ public class DiariesActivity extends AppCompatActivity
     }
 
     @Override
-    public void showDeleteConfirmation() {
+    public void showDeleteConfirmation(@NonNull final DiaryEntry entry) {
         AlertDialog.Builder adb = new AlertDialog.Builder(this)
-                .setMessage("Do you really want to give up on this piece of your memories?")
-                .setNegativeButton("No", null)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setMessage(R.string.delete_confirmation_text)
+                .setNegativeButton(R.string.no_text, null)
+                .setPositiveButton(R.string.yes_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do something not funny at all... delete!
+                        mPresenter.confirmDelete(entry);
                     }
                 });
         adb.show();

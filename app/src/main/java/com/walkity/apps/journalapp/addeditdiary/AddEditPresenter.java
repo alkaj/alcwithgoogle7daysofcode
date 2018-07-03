@@ -2,12 +2,13 @@ package com.walkity.apps.journalapp.addeditdiary;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.walkity.apps.journalapp.data.AppDatabase;
 import com.walkity.apps.journalapp.data.DiaryEntry;
-import com.walkity.apps.journalapp.utils.AppExecutor;
+import com.walkity.apps.journalapp.utils.AppExecutors;
 
 import java.util.Date;
 
@@ -21,6 +22,7 @@ public class AddEditPresenter extends AndroidViewModel implements AddEditContrac
     private AddEditContract.View mView;
     private DiaryEntry mDraft;
     private AppDatabase database;
+    private boolean hasUpdate = false;
 
     public AddEditPresenter(@NonNull Application application) {
         super(application);
@@ -45,13 +47,23 @@ public class AddEditPresenter extends AndroidViewModel implements AddEditContrac
             mView.showUI(mDraft);
         }
         else
-            new AppExecutor().execute(new Runnable() {
+        {
+            final Handler mainThreadHandler = new Handler();
+            new AppExecutors().execute(new Runnable() {
                 @Override
                 public void run() {
                     mDraft = database.dao().getNonReactiveEntry(id);
-                    mView.showUI(mDraft);
+                    mainThreadHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mView.showUI(mDraft);
+                        }
+                    });
                 }
             });
+            //this is an update...
+            hasUpdate = true;
+        }
     }
 
     @Override
@@ -72,21 +84,28 @@ public class AddEditPresenter extends AndroidViewModel implements AddEditContrac
             mView.showErrorNoNarration();
         else
         {
-            new AppExecutor().execute(new Runnable() {
+            new AppExecutors().execute(new Runnable() {
                 @Override
                 public void run() {
-                    database.dao().addEntry(mDraft);
+                    if(hasUpdate)
+                        database.dao().updateEntry(mDraft);
+                    else
+                        database.dao().addEntry(mDraft);
                 }
             });
-            mView.showEntrySaved();
             mView.showList();
+            hasUpdate = false;
         }
     }
 
     @Override
-    public void deleteDraft() {
-        mDraft = new DiaryEntry("", "", new Date(), "");
-        mView.showList();
-        mView.showDraftDeleted();
+    public void saveImage() {
+        //save the image into firebase storage...
+    }
+
+    @Override
+    public void pickImage() {
+        //pick an image...
+        mView.showPickImage();
     }
 }

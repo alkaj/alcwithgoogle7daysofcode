@@ -1,8 +1,11 @@
 package com.walkity.apps.journalapp.addeditdiary;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +22,8 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
     private ActivityDiaryFactoryBinding factoryBinding;
     private AddEditPresenter mPresenter;
     private DiaryEntry mEntry;
+    private final int GET_IMAGE_REQUEST = 1234;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +52,8 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
         if(item.getItemId() == android.R.id.home)
             showList();
         else
-        if(item.getItemId() == R.id.factory_action_delete)
-            mPresenter.deleteDraft();
+        if(item.getItemId() == R.id.factory_action_photo)
+            mPresenter.pickImage();
         else
         if (item.getItemId() == R.id.factory_action_save)
         {
@@ -77,11 +82,6 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
     }
 
     @Override
-    public void showEntrySaved() {
-        Toast.makeText(this, R.string.entry_saved_text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void showDraftSaved() {
         Toast.makeText(this, R.string.draft_saved_text, Toast.LENGTH_SHORT).show();
     }
@@ -103,8 +103,46 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
     }
 
     @Override
-    public void showDraftDeleted() {
-        Toast.makeText(this, getString(R.string.draft_deleted_text), Toast.LENGTH_SHORT)
+    public void showPickImage() {
+        //show the choser dialog...
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.choose_image_source_text)
+                .setNeutralButton(R.string.camera_text, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        capture();
+                    }
+                })
+                .setPositiveButton(R.string.storage_text, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        existing();
+                    }
+                })
                 .show();
+    }
+
+    /*
+    Take use an existing image...
+     */
+    public void existing()
+    {
+        Intent pickimageIntent = new Intent();
+        pickimageIntent.setType("image/*");
+        pickimageIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(pickimageIntent, GET_IMAGE_REQUEST);
+
+    }
+
+    /*
+    Take use capture an image right now...
+     */
+    public void capture()
+    {
+        Intent pickimageIntent = new Intent();
+        //pickimageIntent.setType("image/*");
+        pickimageIntent.setAction(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(pickimageIntent, GET_IMAGE_REQUEST);
+
     }
 }

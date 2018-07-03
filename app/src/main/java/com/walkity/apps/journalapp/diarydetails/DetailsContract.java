@@ -12,8 +12,9 @@ import com.walkity.apps.journalapp.data.DiaryEntry;
 public interface DetailsContract {
     interface Presenter extends BasePresenter
     {
-        void loadEntry(DiaryEntry entry);
+        void loadEntry(int id);
         void loadList();
+        void getView(DetailsContract.View v);
     }
 
     interface View extends BaseView<Presenter>

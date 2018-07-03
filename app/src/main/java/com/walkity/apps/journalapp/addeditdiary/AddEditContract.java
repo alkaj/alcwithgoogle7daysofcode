@@ -17,17 +17,17 @@ public interface AddEditContract {
         void loadEntry(int id);
         void getView(@NonNull View view);
         void saveEntry(@NonNull DiaryEntry entry);
-        void deleteDraft();
+        void saveImage();
+        void pickImage();
 
     }
     interface View extends BaseView<Presenter>
     {
         void showUI(@NonNull DiaryEntry entry);
-        void showEntrySaved();
         void showDraftSaved();
         void showList();
         void showErrorNoTitle();
         void showErrorNoNarration();
-        void showDraftDeleted();
+        void showPickImage();
     }
 }

@@ -7,6 +7,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ddd"
         android:id="@+id/main_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.walkity.apps.journalapp.diaries.DiariesActivity"
@@ -57,8 +58,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/diaries_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:layout_height="match_parent"
+            android:background="#ddd"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

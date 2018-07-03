@@ -9,9 +9,9 @@
         android:icon="@drawable/ic_check"
         android:title="@string/save_text" />
     <item
-        android:id="@+id/factory_action_delete"
+        android:id="@+id/factory_action_photo"
         app:showAsAction="always"
-        android:icon="@drawable/ic_trash"
+        android:icon="@drawable/ic_photo"
         android:orderInCategory="200"
         android:title="@string/delete_text" />
 </menu>

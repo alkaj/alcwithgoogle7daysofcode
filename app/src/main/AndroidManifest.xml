@@ -29,13 +29,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".addeditdiary.DiaryFactoryActivity" android:label="@string/factory_title"/>
-        <activity android:name=".settings.SettingsActivity"
-            android:parentActivityName=".diaries.DiariesActivity"
-            android:label="@string/settings_title">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.walkity.apps.journalapp.diaries.DiariesActivity" />
-        </activity>
         <activity
             android:name=".diarydetails.DiaryActivity"
             android:label="@string/title_activity_dirary"

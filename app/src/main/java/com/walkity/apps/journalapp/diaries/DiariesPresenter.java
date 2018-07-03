@@ -3,16 +3,13 @@ package com.walkity.apps.journalapp.diaries;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.walkity.apps.journalapp.data.AppDatabase;
 import com.walkity.apps.journalapp.data.DiaryEntry;
+import com.walkity.apps.journalapp.utils.AppExecutors;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -86,11 +83,21 @@ public class DiariesPresenter extends AndroidViewModel implements DiariesContrac
 
     @Override
     public void deleteEntry(@NonNull DiaryEntry entry) {
-        mView.showDeleteConfirmation();
+        mView.showDeleteConfirmation(entry);
     }
 
     @Override
     public void updateEntry(@NonNull DiaryEntry entry) {
         mView.showNewEntry(entry.getId());
+    }
+
+    @Override
+    public void confirmDelete(@NonNull final DiaryEntry entry) {
+        new AppExecutors().execute(new Runnable() {
+            @Override
+            public void run() {
+                database.dao().deleteEntry(entry);
+            }
+        });
     }
 }
