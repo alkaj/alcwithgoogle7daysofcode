@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.walkity.apps.journalapp.R;
@@ -166,5 +167,15 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
             //and load it into the preview...
             loadImage(image);
         }
+    }
+
+    /**
+     * Changes load the image picker to update this image...
+     * @param v the origin of the change
+     */
+    public void changeImage(@NonNull View v)
+    {
+        //call the change man...
+        showPickImage();
     }
 }
