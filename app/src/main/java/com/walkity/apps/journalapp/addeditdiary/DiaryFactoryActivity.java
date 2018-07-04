@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -122,10 +123,10 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
                 .show();
     }
 
-    /*
-    Take use an existing image...
+    /**
+     * launches the image picker against existing images
      */
-    public void existing()
+    private void existing()
     {
         Intent pickimageIntent = new Intent();
         pickimageIntent.setType("image/*");
@@ -134,15 +135,36 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
 
     }
 
-    /*
-    Take use capture an image right now...
+    /**
+     * launches image picker against the camera
      */
-    public void capture()
+    private void capture()
     {
         Intent pickimageIntent = new Intent();
         //pickimageIntent.setType("image/*");
         pickimageIntent.setAction(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(pickimageIntent, GET_IMAGE_REQUEST);
 
+    }
+
+    /**
+     * loads the provided image into the preview frame...
+     * @param image to be loaded into the preview frame...
+     */
+    private void loadImage(Bitmap image)
+    {
+       factoryBinding.imagePreview.setImageBitmap(image);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GET_IMAGE_REQUEST && resultCode == RESULT_OK)
+        {
+            //then get the image...
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            //and load it into the preview...
+            loadImage(image);
+        }
     }
 }
