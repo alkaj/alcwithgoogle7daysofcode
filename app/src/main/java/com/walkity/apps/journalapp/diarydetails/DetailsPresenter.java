@@ -67,4 +67,16 @@ public class DetailsPresenter extends AndroidViewModel implements DetailsContrac
     public void getView(DetailsContract.View v) {
         mView = v;
     }
+
+    @Override
+    public void loadSharer() {
+        //todo: load the sharer on the view...
+        mView.showShare(mEntry);
+    }
+
+    @Override
+    public void loadEdit() {
+        //todo: load the edit page with the current entry.
+        mView.showEdit(mEntry.getId());
+    }
 }

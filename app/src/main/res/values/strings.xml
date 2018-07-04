@@ -31,4 +31,8 @@
     <string name="choose_image_source_text">Choose the image source</string>
     <string name="camera_text">Camera</string>
     <string name="storage_text">Storage</string>
+    <string name="share_text">Share</string>
+    <string name="share_chooser_title">Share this diary</string>
+    <string name="created_on_text">Created in JI on\ </string>
+    <string name="created_at_text">\ at\ </string>
 </resources>
