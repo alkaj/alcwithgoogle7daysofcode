@@ -108,6 +108,7 @@
             <ImageView
                 android:id="@+id/imagePreview"
                 android:layout_width="match_parent"
+                android:foreground="@drawable/fg_photo_frame_square"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
@@ -122,11 +123,11 @@
             <ImageButton
                 android:id="@+id/edit_imagePreview"
                 android:layout_width="41dp"
-                android:layout_height="37dp"
+                android:layout_height="41dp"
                 android:onClick="changeImage"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
+                android:background="@drawable/bg_rounded_icon_accent"
                 app:layout_constraintEnd_toEndOf="@+id/imagePreview"
                 app:layout_constraintTop_toTopOf="@+id/imagePreview"
                 app:srcCompat="@drawable/ic_pencil" />
