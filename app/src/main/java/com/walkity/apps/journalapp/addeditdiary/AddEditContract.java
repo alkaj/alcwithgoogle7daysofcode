@@ -19,6 +19,7 @@ public interface AddEditContract {
         void saveEntry(@NonNull DiaryEntry entry);
         void saveImage();
         void pickImage();
+        void loadImage(String path);
 
     }
     interface View extends BaseView<Presenter>
