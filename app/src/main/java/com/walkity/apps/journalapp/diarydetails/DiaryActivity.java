@@ -3,11 +3,15 @@ package com.walkity.apps.journalapp.diarydetails;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,6 +25,10 @@ import com.walkity.apps.journalapp.addeditdiary.DiaryFactoryActivity;
 import com.walkity.apps.journalapp.data.DiaryEntry;
 import com.walkity.apps.journalapp.databinding.ActivityDiraryBinding;
 import com.walkity.apps.journalapp.databinding.ContentDiraryBinding;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import static android.content.Intent.ACTION_SEND;
 
@@ -84,9 +92,9 @@ public class DiaryActivity extends AppCompatActivity implements DetailsContract.
     @Override
     public void showEntry(@NonNull DiaryEntry entry) {
         //todo: load the entry values into the view
-        if(mBinding == null)
-            Log.w("test", entry.getTitle());
         mBinding.setItem(entry);
+        //load the correct image
+        mBinding.image.setImageBitmap(path2image(entry.getImages()));
     }
 
     @Override
@@ -125,5 +133,22 @@ public class DiaryActivity extends AppCompatActivity implements DetailsContract.
         Intent editIntent = new Intent(this, DiaryFactoryActivity.class);
         editIntent.putExtra("id", id);
         startActivity(editIntent);
+    }
+
+    private Bitmap path2image(String path)
+    {
+        if (null == path || path.equals(""))
+            return null;
+        Uri imageUri = Uri.parse(path);
+        //get the permission to read that image...
+        imageUri = FileProvider.getUriForFile(this, "com.walkity.apps.journalapp",
+                new File(imageUri.toString()));
+        try {
+            InputStream is = getContentResolver().openInputStream(imageUri);
+            return BitmapFactory.decodeStream(is);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
