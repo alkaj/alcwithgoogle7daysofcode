@@ -233,7 +233,7 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
                     //compress and save that image...
                     //the file name...
                     String name = UUID.randomUUID().toString();
-                    name = getFilesDir() + "Images/" + name + ".jpg";
+                    name = getFilesDir() + "/Images/" + name + ".jpg";
                     if (!mEntry.getImages().equals(""))
                         name = mEntry.getImages();
                     File file = new File(name);
