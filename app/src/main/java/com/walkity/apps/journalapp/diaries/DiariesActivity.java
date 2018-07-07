@@ -168,8 +168,8 @@ public class DiariesActivity extends AppCompatActivity
     public void showUserDetails(FirebaseUser user) {
         //update the title with the user informations
         StringBuilder title = new StringBuilder();
-        title.append(user.getDisplayName()).append(
-                getString(R.string.journal_text));
+        title.append(user.getDisplayName());
+        assert(getSupportActionBar() != null);
         getSupportActionBar().setTitle(title);
     }
 

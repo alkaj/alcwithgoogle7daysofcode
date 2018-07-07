@@ -18,7 +18,6 @@
     <string name="time_text">13:33</string>
     <string name="logout_text">Logout</string>
     <string name="login_text">Sign in to start saving your memories</string>
-    <string name="journal_text">\'s journal</string>
     <string name="arrow_text">Click down there to start</string>
     <string name="diaries_empty_text">Hmmm too much blank space here!!! \n\n  What\'s that plus sign for??</string>
     <string name="entry_saved_text">Entry saved successfully</string>
