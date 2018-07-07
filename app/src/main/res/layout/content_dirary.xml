@@ -48,7 +48,7 @@
                     <View
                         android:layout_width="0dp"
                         android:layout_height="55dp"
-                        android:background="#8888"
+                        android:background="@color/colorOverlay"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
