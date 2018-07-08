@@ -13,14 +13,14 @@
         <activity
             android:name=".diaries.DiariesActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.Splash">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.walkity.apps.journalapp.login.LoginActivity" />
         </activity>
         <activity
             android:name=".login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.Splash"
             android:parentActivityName=".diaries.DiariesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addeditdiary.DiaryFactoryActivity" android:label="@string/factory_title"/>
+        <activity android:name=".addeditdiary.DiaryFactoryActivity"
+            android:label="@string/factory_title" />
         <activity
             android:name=".diarydetails.DiaryActivity"
             android:label="@string/title_activity_dirary"

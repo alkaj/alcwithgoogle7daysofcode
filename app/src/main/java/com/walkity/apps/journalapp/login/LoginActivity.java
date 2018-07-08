@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set back the theme to the normal...
+        setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_login);
         //build the google signin provider...
         providers = Arrays.asList(

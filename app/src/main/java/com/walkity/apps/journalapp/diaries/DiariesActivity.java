@@ -45,6 +45,8 @@ public class DiariesActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //set back the theme to the normal...
+        setTheme(R.style.AppTheme_NoActionBar);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         contentBinding = DataBindingUtil.getBinding(findViewById(R.id.main_content));
         Toolbar toolbar = findViewById(R.id.toolbar);
