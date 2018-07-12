@@ -3,7 +3,13 @@ package com.walkity.apps.journalapp.utils;
 import android.content.ClipData;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +20,11 @@ import com.walkity.apps.journalapp.R;
 import com.walkity.apps.journalapp.data.DiaryEntry;
 import com.walkity.apps.journalapp.databinding.JournalItemBinding;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -87,6 +98,22 @@ public class DiariesListAdapter extends RecyclerView.Adapter<DiariesListAdapter.
             item.getRoot().setOnClickListener(ct);
             item.iconDelete.setOnClickListener(ct);
             item.iconEdit.setOnClickListener(ct);
+            //get the image if any... and set it as the background
+            if(!entry.getImages().equals(""))
+            {
+                //then create a bitmap of that image...
+                Drawable image = null;
+                File imageFile = new File(entry.getImages());
+                Uri authorized = FileProvider.getUriForFile(context, "com.walkity.apps.journalapp", imageFile);
+                try {
+                    InputStream is = context.getContentResolver().openInputStream(authorized);
+                    image = BitmapDrawable.createFromStream(is, "entry_background");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if (null != image)
+                    item.image.setBackground(image);
+            }
             item.executePendingBindings();
         }
     }
