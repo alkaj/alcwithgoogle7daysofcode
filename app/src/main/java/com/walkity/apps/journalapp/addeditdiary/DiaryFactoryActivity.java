@@ -101,11 +101,6 @@ public class DiaryFactoryActivity extends AppCompatActivity implements AddEditCo
     }
 
     @Override
-    public void showDraftSaved() {
-        Toast.makeText(this, R.string.draft_saved_text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void showList()
     {
         onBackPressed();

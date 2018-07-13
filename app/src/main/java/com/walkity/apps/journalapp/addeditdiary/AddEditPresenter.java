@@ -99,26 +99,9 @@ public class AddEditPresenter extends AndroidViewModel implements AddEditContrac
     }
 
     @Override
-    public void saveImage() {
-        //save the image into firebase storage...
-    }
-
-    @Override
     public void pickImage() {
         //pick an image...
         mView.showPickImage();
     }
 
-    @Override
-    public void loadImage(String path) {
-        mDraft.setImages(path);
-        /*
-        new AppExecutors().execute(new Runnable() {
-            @Override
-            public void run() {
-                database.dao().updateEntry(mDraft);
-            }
-        });
-        */
-    }
 }
